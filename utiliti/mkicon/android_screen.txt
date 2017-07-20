@@ -1,0 +1,12 @@
+drawable-land-hdpi-screen.png,800
+drawable-land-ldpi-screen.png,320
+drawable-land-mdpi-screen.png,420
+drawable-land-xhdpi-screen.png,1280
+drawable-land-xxhdpi-screen.png,1600
+drawable-land-xxxhdpi-screen.png,1920
+drawable-port-hdpi-screen.png,480
+drawable-port-ldpi-screen.png,240
+drawable-port-mdpi-screen.png,320
+drawable-port-xhdpi-screen.png,720
+drawable-port-xxhdpi-screen.png,960
+drawable-port-xxxhdpi-screen.png,1280

@@ -1,0 +1,2 @@
+SplashScreenPhone.scale-240.png,1152
+SplashScreen.scale-100.png,620

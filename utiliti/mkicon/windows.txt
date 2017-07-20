@@ -1,0 +1,13 @@
+Square150x150Logo.scale-100.png,150
+Square150x150Logo.scale-240.png,360
+Square30x30Logo.scale-100.png,30
+Square310x310Logo.scale-100.png,310
+Square44x44Logo.scale-100.png,44
+Square44x44Logo.scale-240.png,106
+Square70x70Logo.scale-100.png,70
+Square71x71Logo.scale-100.png,71
+Square71x71Logo.scale-240.png,170
+StoreLogo.scale-100.png,50
+StoreLogo.scale-240.png,120
+Wide310x150Logo.scale-100.png,310
+Wide310x150Logo.scale-240.png,744

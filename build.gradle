@@ -1,0 +1,103 @@
+buildscript {
+	ext { springBootVersion = '1.5.4.RELEASE' }
+	repositories { mavenCentral() }
+	dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+
+apply plugin: "java"
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+if (!JavaVersion.current().java7Compatible) {
+	throw new IllegalStateException("Deve essere compilato ed eseguito con una versione di Java uguale o superiore a 7")
+}
+
+mainClassName = "org.rossonet.ar4k.agent.javaAgent.JavaAgentApplication"
+
+repositories {
+	mavenCentral()
+	maven { url "http://repository.pentaho.org/artifactory/repo/" }
+	maven { url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"}
+}
+
+configurations.all {
+	//exclude group:"org.springframework.boot", module: "spring-boot-starter-logging"
+	exclude group:"org.slf4j", module: "slf4j-log4j12"
+}
+
+ext { springCloudVersion = 'Dalston.SR1' }
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-activemq')
+	compile('org.springframework.boot:spring-boot-starter-aop')
+	compile('org.codehaus.groovy:groovy-all')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	// Jolokia
+	compile('org.jolokia:jolokia-core:1.3.6')
+	compile('org.jolokia:jolokia-spring:1.3.6')
+	// Camel
+	compile('org.apache.camel:camel-spring-boot-starter:2.17.0')
+	// log via Jolokia
+	compile('io.hawt:hawtio-insight-log:1.4.65')
+	// ActiveMQ
+	compile 'org.apache.activemq:activemq-broker:5.14.5'
+	compile 'org.apache.activemq:activemq-stomp:5.14.5'
+	compile 'org.apache.activemq:activemq-client:5.14.5'
+	compile 'org.apache.activemq:activemq-camel:5.14.5'
+	compile 'org.apache.activemq:activemq-spring:5.14.5'
+	compile 'org.apache.activemq:activemq-mqtt:5.14.5'
+	// per Kettle
+	compile 'pentaho-kettle:kettle-core:4.4.0-stable'
+	compile 'pentaho-kettle:kettle-db:4.4.0-stable'
+	compile 'pentaho-kettle:kettle-engine:4.4.0-stable'
+	compile 'commons-vfs:commons-vfs:1.0'
+	compile 'com.healthmarketscience.jackcess:jackcess:1.2.4'
+	compile 'javax.mail:mail:1.4.7'
+	compile 'net.sourceforge.jexcelapi:jxl:2.6.12'
+	compile 'commons-httpclient:commons-httpclient:3.1'
+	// per OpenOffice API
+	compile "org.openoffice:juh:4.1.2"
+	compile "org.openoffice:ridl:4.1.2"
+	compile "org.openoffice:unoil:4.1.2"
+	compile "org.openoffice:jurt:4.1.2"
+	compile "org.openoffice:officebean:4.1.2"
+	// Per manipolare via docx4j i documenti
+	compile 'org.docx4j:docx4j:3.2.2'
+	// JCloud
+	compile('org.apache.jclouds:jclouds-all:1.9.2')
+	compile('org.apache.jclouds.labs:docker:1.9.2')
+	// SSH
+	compile "com.jcraft:jsch:0.1.54"
+	// GroovyShell
+	// compile 'org.springframework.boot:spring-boot-starter-remote-shell'
+	// NEO4J
+	compile "org.neo4j:neo4j:2.3.11"
+	compile "org.neo4j:neo4j-ogm-embedded-driver:2.1.3"
+	//compile 'org.springframework.data:spring-data-neo4j'
+
+	compile 'org.ros.rosjava_core:rosjava:0.3.5'
+	compile('org.springframework.boot:spring-boot-starter-mail')
+	compile('org.codehaus.groovy:groovy')
+	runtime('org.springframework.boot:spring-boot-devtools')
+	//runtime('com.h2database:h2')
+	runtime('mysql:mysql-connector-java')
+	runtime('org.postgresql:postgresql')
+	runtime('com.microsoft.sqlserver:mssql-jdbc')
+	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement { imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" } }
+
+task wrapper(type: Wrapper) { gradleVersion = '2.4' }
+
+jar {
+	baseName = 'agenteAr4k'
+	version =  '0.0.1-SNAPSHOT'
+}

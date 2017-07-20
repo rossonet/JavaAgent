@@ -1,0 +1,61 @@
+# OS-X
+._.DS_Store
+.DS_Store
+dist
+logs
+app.jar
+
+# output applicativo
+log/*.out
+log/*
+log.out
+nohup.out
+ar4k.log
+persistence
+
+# res/resources/cloudplugs contains the generated web UI
+res/resources/*
+
+# All directories should end in / (information used by ide.gradle)
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# IDEA
+*.iws
+*.ipr
+*.iml
+out/
+
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### MkDocs
+site

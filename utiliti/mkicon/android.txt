@@ -1,0 +1,6 @@
+drawable-hdpi-icon.png,72
+drawable-ldpi-icon.png,36
+drawable-mdpi-icon.png,48
+drawable-xhdpi-icon.png,96
+drawable-xxhdpi-icon.png,114
+drawable-xxxhdpi-icon.png,72
