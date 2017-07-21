@@ -5,7 +5,7 @@ branch=studioBootstrap
 #branch=master
 unset SSH_ASKPASS
 echo "Aggiorno documentazione"
-./generaDocumentazione.sh > /dev/null 2>/dev/null
+./generaDocumentazione.sh >/dev/null 2>/dev/null
 echo "Eseguo i test"
 if (./test.sh)
 then

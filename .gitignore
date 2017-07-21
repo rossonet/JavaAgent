@@ -59,3 +59,7 @@ nbdist/
 
 ### MkDocs
 site
+
+### Test ###
+test.log
+test.err

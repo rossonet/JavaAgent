@@ -1,5 +1,5 @@
 #!/bin/bash
-if (./gradlew test 2>/dev/null >/dev/null)
+if (./gradlew test 2>test.err >test.log)
 then
 	echo OK
 else

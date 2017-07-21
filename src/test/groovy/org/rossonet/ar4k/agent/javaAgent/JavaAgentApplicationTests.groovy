@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan
 import static org.junit.Assert.*
+import org.springframework.test.context.TestPropertySource
 
 @RunWith(SpringRunner)
 @SpringBootTest
