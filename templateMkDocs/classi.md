@@ -1,7 +1,3 @@
-## Classi Java
-
-[javadoc](javadoc/index.html)
-
-## Calssi Groovy
+## documentazione classi
 
 [groovydoc](groovydoc/index.html)

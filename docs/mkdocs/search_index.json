@@ -62,18 +62,13 @@
         },
         {
             "location": "/classi/",
-            "text": "Classi Java\n\n\njavadoc\n\n\nCalssi Groovy\n\n\ngroovydoc",
+            "text": "documentazione classi\n\n\ngroovydoc",
             "title": "Doc classi"
         },
         {
-            "location": "/classi/#classi-java",
-            "text": "javadoc",
-            "title": "Classi Java"
-        },
-        {
-            "location": "/classi/#calssi-groovy",
+            "location": "/classi/#documentazione-classi",
             "text": "groovydoc",
-            "title": "Calssi Groovy"
+            "title": "documentazione classi"
         }
     ]
 }
