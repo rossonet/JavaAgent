@@ -61,6 +61,7 @@ public class Anima {
 	public @Value('${jolokia.port}')int portaJolokia
 	public @Value('${jolokia.utente}')String utenteJolokia
 	public @Value('${jolokia.password}')String passwordJolokia
+	public @Value('${server.port}')String portaWeb
 
 	static Bootstrap boot = new Bootstrap()
 
@@ -99,10 +100,11 @@ public class Anima {
 		stampa("jolokia port: "+portaJolokia)
 		stampa("jolokia path: jolokia")
 		//stampa("SEMENTE OTP: "+boot.sementeOtp)
+		stampa("--- ACCESSO WEB: http://<indirizzo agente>:"+portaWeb+"/")
 	}
 
 	@ManagedOperation
-	public void stampa(String testo) throws Throwable {
+	public static void stampa(String testo) throws Throwable {
 		logger.info(testo)
 	}
 

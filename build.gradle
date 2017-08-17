@@ -9,6 +9,7 @@ apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
+apply plugin: 'war'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.7
@@ -22,13 +23,17 @@ mainClassName = "org.rossonet.ar4k.agent.javaAgent.JavaAgentApplication"
 
 repositories {
 	mavenCentral()
-	maven { url "http://repository.pentaho.org/artifactory/repo/" }
+	jcenter()
+	maven { url "https://repo.spring.io/libs-milestone"}
+	maven { url "http://repository.pentaho.org/artifactory/repo/"}
 	maven { url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"}
+	maven { url "https://raw.github.com/wonwoo/spring-social-pinterest/mvn-repo/"}
 }
 
 configurations.all {
 	//exclude group:"org.springframework.boot", module: "spring-boot-starter-logging"
 	exclude group:"org.slf4j", module: "slf4j-log4j12"
+	exclude module: "spring-boot-starter-tomcat"
 }
 
 ext { springCloudVersion = 'Dalston.SR1' }
@@ -42,7 +47,7 @@ dependencies {
 	compile('org.jolokia:jolokia-core:1.3.6')
 	compile('org.jolokia:jolokia-spring:1.3.6')
 	// Camel
-	compile('org.apache.camel:camel-spring-boot-starter:2.17.0')
+	compile('org.apache.camel:camel-spring-boot-starter:2.17.1')
 	// log via Jolokia
 	compile('io.hawt:hawtio-insight-log:1.4.65')
 	// ActiveMQ
@@ -81,20 +86,61 @@ dependencies {
 	compile "org.neo4j:neo4j-ogm-embedded-driver:2.1.3"
 	//compile 'org.springframework.data:spring-data-neo4j'
 	//web
+	compile("org.springframework.boot:spring-boot-starter-web")
 	compile 'org.springframework.boot:spring-boot-starter-undertow'
+	compile("org.springframework.boot:spring-boot-starter-security")
 	compile 'org.ros.rosjava_core:rosjava:0.3.5'
 	compile('org.springframework.boot:spring-boot-starter-mail')
 	compile('org.codehaus.groovy:groovy')
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	runtime('org.springframework.boot:spring-boot-devtools')
-	//runtime('com.h2database:h2')
+	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java')
 	runtime('org.postgresql:postgresql')
 	runtime('com.microsoft.sqlserver:mssql-jdbc')
 	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	//social
+	compile 'com.github.spring-social:spring-social-google:latest.release'
+	compile 'org.springframework.social:spring-social-pinterest:latest.release'
+	compile 'org.springframework.social:spring-social-facebook:2.0.3.RELEASE'
+	compile "org.springframework.social:spring-social-twitter:1.1.0.RELEASE"
+	compile 'org.springframework.social:spring-social-github:1.0.0.M4'
+	// process engine
+	compile 'org.activiti:activiti-spring-boot-starter-basic:5.22.0'
+	compile 'org.activiti:activiti-spring-boot-starter-actuator:5.22.0'
+	//compile 'org.activiti:activiti-jmx:5.22.0'
+	compile 'org.activiti:activiti-camel:5.22.0'
+	// batch
+	compile("org.springframework.boot:spring-boot-starter-batch")
+	// spring integration
+	compile("org.springframework.boot:spring-boot-starter-integration")
+	// webjars
+	compile("org.webjars:angularjs:1.6.4")
+	compile("org.webjars:bootstrap:3.3.7-1")
+	compile("org.webjars:jquery:3.2.1")
+	compile("org.webjars:font-awesome:4.7.0")
+	compile 'org.webjars.bower:angular-sanitize:1.6.5'
+	compile 'org.webjars.bower:angular-cookies:1.6.5'
+	compile 'org.webjars.bower:angular-route:1.6.5'
+	compile 'org.webjars.bower:angular-animate:1.6.5'
+	compile 'org.webjars.bower:angular-translate:2.15.2'
+	compile 'org.webjars.bower:angular-resource:1.6.5'
+	compile 'org.webjars.bower:angular-ui-router:1.0.5'
+	compile 'org.webjars:angular-ui-bootstrap:2.2.0'
+	compile 'org.webjars.bower:angular-bootstrap:2.5.0'
+	compile 'org.webjars.bower:angular-touch:1.6.5'
+	compile 'org.webjars:angular-file-upload:12.2.13'
+	compile 'org.webjars:angular-loading-bar:0.9.0'
+	compile 'org.webjars:angular-nvd3:1.0.5'
+	compile 'org.webjars.bower:nvd3:1.8.5'
+	compile 'org.webjars.bower:d3:4.9.1'
+	compile 'org.webjars.bower:jsoneditor:5.5.2'
+
 }
 
-dependencyManagement { imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" } }
+dependencyManagement { imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	} }
 
 task wrapper(type: Wrapper) { gradleVersion = '2.4' }
 
