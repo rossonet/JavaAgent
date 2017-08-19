@@ -63,3 +63,6 @@ site
 ### Test ###
 test.log
 test.err
+
+## Proguard ##
+*.proguard.txt

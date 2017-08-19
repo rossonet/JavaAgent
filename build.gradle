@@ -1,8 +1,17 @@
 buildscript {
 	ext { springBootVersion = '1.5.4.RELEASE' }
-	repositories { mavenCentral() }
-	dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+	repositories {
+		mavenCentral()
+		//flatDir dirs: 'offuscatore'
+	 }
+	dependencies { 
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+		//classpath ':proguard:'
+	}
 }
+
+group = 'rossonet'
 
 apply plugin: "java"
 apply plugin: 'groovy'
@@ -10,8 +19,9 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
 apply plugin: 'war'
+apply plugin: 'docker'
 
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
@@ -136,7 +146,6 @@ dependencies {
 	compile 'org.webjars.bower:nvd3:1.8.5'
 	compile 'org.webjars.bower:d3:4.9.1'
 	compile 'org.webjars.bower:jsoneditor:5.5.2'
-
 }
 
 dependencyManagement { imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
@@ -146,5 +155,25 @@ task wrapper(type: Wrapper) { gradleVersion = '2.4' }
 
 jar {
 	baseName = 'agenteAr4k'
-	version =  '0.0.1-SNAPSHOT'
+	version =  '0.0.2-SNAPSHOT'
+}
+
+/*
+task proguard(type: proguard.gradle.ProGuardTask, dependsOn: bootRepackage) {
+  configuration 'proguard.conf'
+  libraryjars configurations.compile
+  injars 'build/libs/agenteAr4k-0.0.1-SNAPSHOT.jar'
+  outjars 'build/libs/agenteAr4k.jar'
+}
+*/
+
+task buildDocker(type: Docker, dependsOn: bootRepackage) {
+  applicationName = 'agentear4k'
+  dockerfile = file('Dockerfile')
+  doFirst {
+    copy {
+      from jar
+      into "${stageDir}/target"
+    }
+  }
 }
