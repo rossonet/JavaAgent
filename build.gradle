@@ -158,6 +158,10 @@ jar {
 	version =  '0.0.2-SNAPSHOT'
 }
 
+war {
+	baseName = 'agenteAr4k'
+	version =  '0.0.2-SNAPSHOT'
+}
 /*
 task proguard(type: proguard.gradle.ProGuardTask, dependsOn: bootRepackage) {
   configuration 'proguard.conf'
