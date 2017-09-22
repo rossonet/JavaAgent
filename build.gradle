@@ -1,10 +1,8 @@
 buildscript {
 	ext { springBootVersion = '1.5.4.RELEASE' }
-	repositories {
-		mavenCentral()
-		//flatDir dirs: 'offuscatore'
-	 }
-	dependencies { 
+	repositories { mavenCentral() //flatDir dirs: 'offuscatore'
+	}
+	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath('se.transmode.gradle:gradle-docker:1.2')
 		//classpath ':proguard:'
@@ -51,8 +49,10 @@ ext { springCloudVersion = 'Dalston.SR1' }
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-activemq')
 	compile('org.springframework.boot:spring-boot-starter-aop')
+	//compile('org.codehaus.groovy:groovy')
 	compile('org.codehaus.groovy:groovy-all')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile "dnsjava:dnsjava:2.1.8"
 	// Jolokia
 	compile('org.jolokia:jolokia-core:1.3.6')
 	compile('org.jolokia:jolokia-spring:1.3.6')
@@ -85,8 +85,8 @@ dependencies {
 	// Per manipolare via docx4j i documenti
 	compile 'org.docx4j:docx4j:3.2.2'
 	// JCloud
-	compile('org.apache.jclouds:jclouds-all:1.9.2')
-	compile('org.apache.jclouds.labs:docker:1.9.2')
+	//compile('org.apache.jclouds:jclouds-all:1.9.2')
+	//compile('org.apache.jclouds.labs:docker:1.9.2')
 	// SSH
 	compile "com.jcraft:jsch:0.1.54"
 	// GroovyShell
@@ -94,64 +94,66 @@ dependencies {
 	// NEO4J
 	compile "org.neo4j:neo4j:2.3.11"
 	compile "org.neo4j:neo4j-ogm-embedded-driver:2.1.3"
+
 	//compile 'org.springframework.data:spring-data-neo4j'
 	//web
 	//compile("org.springframework.boot:spring-boot-starter-web")
 	//compile 'org.springframework.boot:spring-boot-starter-undertow'
-	compile("org.springframework.boot:spring-boot-starter-security")
+	//compile("org.springframework.boot:spring-boot-starter-security")
 	compile 'org.ros.rosjava_core:rosjava:0.3.5'
 	compile('org.springframework.boot:spring-boot-starter-mail')
-	compile('org.codehaus.groovy:groovy')
+
 	//compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	//runtime('org.springframework.boot:spring-boot-devtools')
-	runtime('com.h2database:h2')
-	runtime('mysql:mysql-connector-java')
-	runtime('org.postgresql:postgresql')
-	runtime('com.microsoft.sqlserver:mssql-jdbc')
+	//runtime('com.h2database:h2')
+	//runtime('mysql:mysql-connector-java')
+	//runtime('org.postgresql:postgresql')
+	//runtime('com.microsoft.sqlserver:mssql-jdbc')
 	compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	//social
-	compile 'com.github.spring-social:spring-social-google:latest.release'
-	compile 'org.springframework.social:spring-social-pinterest:latest.release'
-	compile 'org.springframework.social:spring-social-facebook:2.0.3.RELEASE'
-	compile "org.springframework.social:spring-social-twitter:1.1.0.RELEASE"
-	compile 'org.springframework.social:spring-social-github:1.0.0.M4'
+	//compile 'com.github.spring-social:spring-social-google:latest.release'
+	//compile 'org.springframework.social:spring-social-pinterest:latest.release'
+	//compile 'org.springframework.social:spring-social-facebook:2.0.3.RELEASE'
+	//compile "org.springframework.social:spring-social-twitter:1.1.0.RELEASE"
+	//compile 'org.springframework.social:spring-social-github:1.0.0.M4'
 	// process engine
-	compile 'org.activiti:activiti-spring-boot-starter-basic:5.22.0'
-	compile 'org.activiti:activiti-spring-boot-starter-actuator:5.22.0'
+	//compile 'org.activiti:activiti-spring-boot-starter-basic:5.22.0'
+	//compile 'org.activiti:activiti-spring-boot-starter-actuator:5.22.0'
 	//compile 'org.activiti:activiti-jmx:5.22.0'
-	compile 'org.activiti:activiti-camel:5.22.0'
+	//compile 'org.activiti:activiti-camel:5.22.0'
 	// batch
-	compile("org.springframework.boot:spring-boot-starter-batch")
+	//compile("org.springframework.boot:spring-boot-starter-batch")
 	// spring integration
 	compile("org.springframework.boot:spring-boot-starter-integration")
 	// webjars
 	/*
-	compile("org.webjars:angularjs:1.6.4")
-	compile("org.webjars:bootstrap:3.3.7-1")
-	compile("org.webjars:jquery:3.2.1")
-	compile("org.webjars:font-awesome:4.7.0")
-	compile 'org.webjars.bower:angular-sanitize:1.6.5'
-	compile 'org.webjars.bower:angular-cookies:1.6.5'
-	compile 'org.webjars.bower:angular-route:1.6.5'
-	compile 'org.webjars.bower:angular-animate:1.6.5'
-	compile 'org.webjars.bower:angular-translate:2.15.2'
-	compile 'org.webjars.bower:angular-resource:1.6.5'
-	compile 'org.webjars.bower:angular-ui-router:1.0.5'
-	compile 'org.webjars:angular-ui-bootstrap:2.2.0'
-	compile 'org.webjars.bower:angular-bootstrap:2.5.0'
-	compile 'org.webjars.bower:angular-touch:1.6.5'
-	compile 'org.webjars:angular-file-upload:12.2.13'
-	compile 'org.webjars:angular-loading-bar:0.9.0'
-	compile 'org.webjars:angular-nvd3:1.0.5'
-	compile 'org.webjars.bower:nvd3:1.8.5'
-	compile 'org.webjars.bower:d3:4.9.1'
-	compile 'org.webjars.bower:jsoneditor:5.5.2'
-	*/
+	 compile("org.webjars:angularjs:1.6.4")
+	 compile("org.webjars:bootstrap:3.3.7-1")
+	 compile("org.webjars:jquery:3.2.1")
+	 compile("org.webjars:font-awesome:4.7.0")
+	 compile 'org.webjars.bower:angular-sanitize:1.6.5'
+	 compile 'org.webjars.bower:angular-cookies:1.6.5'
+	 compile 'org.webjars.bower:angular-route:1.6.5'
+	 compile 'org.webjars.bower:angular-animate:1.6.5'
+	 compile 'org.webjars.bower:angular-translate:2.15.2'
+	 compile 'org.webjars.bower:angular-resource:1.6.5'
+	 compile 'org.webjars.bower:angular-ui-router:1.0.5'
+	 compile 'org.webjars:angular-ui-bootstrap:2.2.0'
+	 compile 'org.webjars.bower:angular-bootstrap:2.5.0'
+	 compile 'org.webjars.bower:angular-touch:1.6.5'
+	 compile 'org.webjars:angular-file-upload:12.2.13'
+	 compile 'org.webjars:angular-loading-bar:0.9.0'
+	 compile 'org.webjars:angular-nvd3:1.0.5'
+	 compile 'org.webjars.bower:nvd3:1.8.5'
+	 compile 'org.webjars.bower:d3:4.9.1'
+	 compile 'org.webjars.bower:jsoneditor:5.5.2'
+	 compile 'org.webjars:three.js:r77'
+
+	 */
 }
 
-dependencyManagement { imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	} }
+dependencyManagement { imports { mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" } }
 
 task wrapper(type: Wrapper) { gradleVersion = '2.4' }
 
@@ -165,21 +167,21 @@ war {
 	version =  '0.0.2-SNAPSHOT'
 }
 /*
-task proguard(type: proguard.gradle.ProGuardTask, dependsOn: bootRepackage) {
-  configuration 'proguard.conf'
-  libraryjars configurations.compile
-  injars 'build/libs/agenteAr4k-0.0.1-SNAPSHOT.jar'
-  outjars 'build/libs/agenteAr4k.jar'
-}
-*/
+ task proguard(type: proguard.gradle.ProGuardTask, dependsOn: bootRepackage) {
+ configuration 'proguard.conf'
+ libraryjars configurations.compile
+ injars 'build/libs/agenteAr4k-0.0.1-SNAPSHOT.jar'
+ outjars 'build/libs/agenteAr4k.jar'
+ }
+ */
 
 task buildDocker(type: Docker, dependsOn: bootRepackage) {
-  applicationName = 'agentear4k'
-  dockerfile = file('Dockerfile')
-  doFirst {
-    copy {
-      from jar
-      into "${stageDir}/target"
-    }
-  }
+	applicationName = 'agentear4k'
+	dockerfile = file('ConfigurazioneDocker')
+	doFirst {
+		copy {
+			from jar
+			into "${stageDir}/target"
+		}
+	}
 }

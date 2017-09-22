@@ -19,6 +19,7 @@ import org.apache.log4j.LogManager
 import org.apache.log4j.Logger
 import org.jolokia.jmx.JsonMBean
 import org.rossonet.ar4k.agent.javaAgent.memi.Bootstrap
+import org.rossonet.ar4k.agent.javaAgent.memi.Meme
 import org.springframework.beans.factory.annotation.Autowired
 //import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
@@ -72,6 +73,8 @@ public class Anima {
 	CamelContext camelContext
 
 	public static Logger logger = Logger.getLogger(Anima.class)
+
+	public Map<String,Meme> mappaMemi= new HashMap<String,Meme>()
 
 	public Anima(){
 		stampa("Orchestratore agente avviato")
@@ -144,6 +147,23 @@ public class Anima {
 	@ManagedOperation
 	public void creaNeo4J(String filename){
 		GraphDatabaseService graphDb = new GraphDatabaseFactory().newEmbeddedDatabase( filename )
+	}
+
+	@ManagedOperation
+	public Map<String,Map<String,String>> caricaJarEsterno(String label,String percorso,String baseScan){
+		if (!label || label == ''){
+			label = UUID.randomUUID()
+		}
+		Meme nuovo = new Meme(percorso,baseScan)
+		mappaMemi.put(label,nuovo)
+		Map<String,Map<String,String>> ritorno = nuovo.elencoPacchetti(baseScan)
+		return ritorno
+	}
+
+	@ManagedOperation
+	public Map<String,Meme> listaMemi(){
+		return mappaMemi
+
 	}
 }
 
